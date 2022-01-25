@@ -25,7 +25,13 @@ class MyGame(arcade.Window):
     def setup(self):
         """ Set up the game variables. Call to re-start the game. """
         # Create your sprites and sprite lists here
-        pass
+        self.sprites = arcade.SpriteList()
+
+        img = "assets/ac-studios.png"
+        self.player_sprite = arcade.Sprite(img, 1)
+        self.player_sprite.center_x = 300
+        self.player_sprite.center_y = 300
+        self.sprites.append(self.player_sprite);
 
     def on_draw(self):
         """
@@ -35,6 +41,8 @@ class MyGame(arcade.Window):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
+
+        self.sprites.draw()
 
         # Call draw() on all your sprite lists below
 
