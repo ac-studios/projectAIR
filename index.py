@@ -1,6 +1,6 @@
 # this file is all we should have to run to begin the game. it starts up the game.
 import arcade
-from engine.renderer import append2, append2all, RendererInstance
+from engine.renderer import *
 
 SCREEN_WIDTH, SCREEN_HEIGHT = arcade.window_commands.get_display_size()
 SCREEN_TITLE = "projectAIR"
@@ -25,6 +25,8 @@ class projectAIR(arcade.Window):
         # Create your sprites and sprite lists here
         self.sprites = arcade.SpriteList()
 
+        self._instance.append(Image("assets/ac-studios.png", 64, 64, 64, 64))
+
     def on_draw(self):
         """
         Render the screen.
@@ -33,8 +35,6 @@ class projectAIR(arcade.Window):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
-
-        self._instance.clear()
 
         append2all(self.sprites, arcade, self._instance)
 

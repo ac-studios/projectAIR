@@ -52,5 +52,7 @@ class RendererInstance:
         self.stack = []
     def clear(self):
         self.stack = []
+    def append(self, val):
+        self.stack.append(val)
 
 instance = RendererInstance()
