@@ -1,37 +1,29 @@
 # this file is all we should have to run to begin the game. it starts up the game.
 import arcade
+from engine.renderer import append2, append2all, RendererInstance
 
 SCREEN_WIDTH, SCREEN_HEIGHT = arcade.window_commands.get_display_size()
 SCREEN_TITLE = "projectAIR"
 
-
-class MyGame(arcade.Window):
-    """
-    Main application class.
-
-    NOTE: Go ahead and delete the methods you don't need.
-    If you do need a method, delete the 'pass' and replace it
-    with your own code. Don't leave 'pass' in this program.
-    """
-
+# main window
+class projectAIR(arcade.Window):
     def __init__(self, width, height, title):
+        # enable fullscreen and builtins from arcade
         super().__init__(width, height, title, fullscreen=True)
 
+        # set background color to white
         arcade.set_background_color(arcade.color.WHITE)
 
         # If you have sprite lists, you should create them here,
         # and set them to None
 
+        # here is the instance for the renderer we need
+        self._instance = RendererInstance()
+
     def setup(self):
         """ Set up the game variables. Call to re-start the game. """
         # Create your sprites and sprite lists here
         self.sprites = arcade.SpriteList()
-
-        img = "assets/ac-studios.png"
-        self.player_sprite = arcade.Sprite(img, 1)
-        self.player_sprite.center_x = 300
-        self.player_sprite.center_y = 300
-        self.sprites.append(self.player_sprite);
 
     def on_draw(self):
         """
@@ -41,6 +33,10 @@ class MyGame(arcade.Window):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
+
+        self._instance.clear()
+
+        append2all(self.sprites, arcade, self._instance)
 
         self.sprites.draw()
 
@@ -89,11 +85,14 @@ class MyGame(arcade.Window):
 
 
 def main():
-    """ Main function """
-    game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    # create an instance of the main class
+    game = projectAIR(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    # begin setup
     game.setup()
+    # run it
     arcade.run()
 
 
 if __name__ == "__main__":
+    # execute
     main()
