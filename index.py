@@ -34,7 +34,7 @@ def on_draw():
         centerlinex.draw()
         centerliney.draw()
         fpsLabel.text = "[fps:"+str(math.floor(pyglet.clock.get_fps()))+"]"
-        fpsLabel.draw()
+        fpsLabel.draw()  
 
 @window.event  
 def on_key_press(symbol, mod):
