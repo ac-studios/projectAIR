@@ -2,7 +2,7 @@
 import pyglet
 from pyglet.window import key
 import math
-#hello
+
 window = pyglet.window.Window(fullscreen=True)
 
 # intial setup
